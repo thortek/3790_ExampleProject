@@ -22,14 +22,14 @@
       <label for="my-drawer-2" class="drawer-overlay"></label> 
       <ul class="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
         <!-- Sidebar content here -->
-        {#each data.newsData as story (story.uuid) }
+<!--         {#each data.newsData as story (story.uuid) }
         <li class="card" on:click={getStory(story)}>
           <figure class="flex flex-col">
             <img src={story.image_url} alt="Story pic"/>
             <figcaption>{story.title}</figcaption>
           </figure>
         </li>
-        {/each}
+        {/each} -->
       </ul>
     
     </div>
