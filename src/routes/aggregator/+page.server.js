@@ -8,7 +8,7 @@ export async function load() {
         const news_response = await fetch(`https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty`)
         const news_data = await news_response.json()
         const allTopStories = await getAllTopStories(news_data)
-        return allTopStories
+        return { topStories: allTopStories }
     } catch (err) {
         throw error(404, 'Not found')
     }
@@ -18,7 +18,7 @@ async function getAllTopStories(topStoryIDArray) {
     let allTopStories = []
 
     //console.log(topStoryIDArray.length)
-    /* 
+    /*
     if(totalResults === 0) return // should probably let user know "No results"
     if (totalResults > 0 && totalResults < 11) {
         return pageOne.Search // return just the array of the results
@@ -27,18 +27,19 @@ async function getAllTopStories(topStoryIDArray) {
     // figure out how many times to loop
     let counter = Math.ceil(totalResults / 10)
      */
-    topStoryIDArray.forEach(async element => {
-        console.log(element, typeof(element))
-/*         try {
+    const topTen = topStoryIDArray.slice(0, 19)
+    for (const element of topTen) {
+        //console.log(element, typeof (element))
+        try {
             const article = await fetch(`https://hacker-news.firebaseio.com/v0/item/${element}.json?print=pretty`)
             const articleData = await article.json()
-            console.log(articleData)
-            //allTheMovies = [...allTopStories, ...pageData.Search]
+            //console.log(JSON.stringify(articleData))
+            allTopStories.push(articleData)
         }
         catch (err) {
             console.error(err)
-        } */
-    })
+        }
+    }
     return allTopStories
     //return allTheMovies.filter(movie => (movie.Type === 'movie' && movie.Poster !== 'N/A'))
 }

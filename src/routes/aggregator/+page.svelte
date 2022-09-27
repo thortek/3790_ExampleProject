@@ -1,11 +1,12 @@
 <script>
+  import sanitizeHtml from 'sanitize-html'
   export let data, errors
-  $: console.log(data.newsData)
+  $: console.log(data.topStories)
 
   let storyContent = ''
 
   function getStory(story) {
-    storyContent = story.description
+    storyContent = sanitizeHtml(story.text)
   }
 </script>
 
@@ -15,21 +16,21 @@
       <!-- Page content here -->
       <label for="my-drawer-2" class="btn btn-primary drawer-button">Open drawer</label>
       <div class="hero bg-base-200">
-        <p>{storyContent}</p>
+        <p>{@html storyContent}</p>
       </div>
     </div> 
     <div class="drawer-side">
       <label for="my-drawer-2" class="drawer-overlay"></label> 
       <ul class="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
         <!-- Sidebar content here -->
-<!--         {#each data.newsData as story (story.uuid) }
+{#each data.topStories as story }
         <li class="card" on:click={getStory(story)}>
           <figure class="flex flex-col">
-            <img src={story.image_url} alt="Story pic"/>
+            <!-- <img src={story.image_url} alt="Story pic"/> -->
             <figcaption>{story.title}</figcaption>
           </figure>
         </li>
-        {/each} -->
+        {/each}
       </ul>
     
     </div>
