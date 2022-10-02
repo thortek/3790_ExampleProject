@@ -1,6 +1,6 @@
 <script>
   import sanitizeHtml from "sanitize-html";
-  export let data, errors
+  export let data
   $: console.log(data.topStories)
 
   let storyContent = ''

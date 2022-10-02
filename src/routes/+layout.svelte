@@ -1,9 +1,6 @@
 <script>
 	import '../app.css';
 	import Header from '../lib/components/header/Header.svelte';
-
-	export const csr = false;
-	export const prerender = true;
 </script>
 
 <div data-theme="light" class="h-screen">
