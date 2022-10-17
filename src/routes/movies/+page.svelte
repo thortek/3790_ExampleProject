@@ -1,5 +1,6 @@
 <script>
-	export let form, errors
+	import { getMovieDetails } from '$lib/server/movieDetails.js';
+	export let form, errors;
 	//$: console.log(form)
 </script>
 
@@ -19,7 +20,11 @@
 		{#each form as movie}
 			<div class="card w-96 bg-base-100 shadow-xl m-4">
 				<figure>
-					<img src={movie.Poster} alt="Movie poster" />
+					<a href="#">
+						<form method="POST" action="?/details" use:enhance>
+							<img src={movie.Poster} alt="Movie poster" />
+						</form>
+					</a>
 				</figure>
 				<div class="card-body">
 					<h2 class="card-title">{movie.Title}</h2>
