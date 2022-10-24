@@ -32,7 +32,7 @@
 		<a href="/aggregator" class="btn btn-ghost normal-case text-xl">News Aggregator</a>
 	</div>
 	<div>
-		<form method="POST" action="/movies" use:enhance>
+		<form method="POST" action="/movies?/search" use:enhance>
 			<div class="form-control">
 				<input
 					class="input input-bordered input-lg w-80"

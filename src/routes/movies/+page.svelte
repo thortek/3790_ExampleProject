@@ -1,7 +1,12 @@
 <script>
-	import { getMovieDetails } from '$lib/server/movieDetails.js';
-	export let form, errors;
-	//$: console.log(form)
+	import { getMovieDetails} from '$lib/api/movieDetails'
+	export let data, form, errors;
+	$: console.log(data)
+	async function getDetails(movieID) {
+		console.log(movieID)
+		const selectedMovie = await getMovieDetails('posterMovieID', movieID)
+		console.log(selectedMovie)
+	}
 </script>
 
 {#if errors?.title}
@@ -16,15 +21,22 @@
 				<h2 class="card-title">No movies loaded. Enter a valid movie title in the search box.</h2>
 			</div>
 		</div>
-	{:else}
+	{:else if form.length > 0 }
 		{#each form as movie}
 			<div class="card w-96 bg-base-100 shadow-xl m-4">
 				<figure>
-					<a href="#">
-						<form method="POST" action="?/details" use:enhance>
-							<img src={movie.Poster} alt="Movie poster" />
-						</form>
-					</a>
+ 					<form
+					id="posterForm"
+						on:submit|preventDefault={getDetails(movie.imdbID)}
+					>
+						<input
+							type="image"
+							name="posterMovieID"
+							id="posterMovieID"
+							src={movie.Poster}
+							alt="Movie poster"
+						/>
+					</form>
 				</figure>
 				<div class="card-body">
 					<h2 class="card-title">{movie.Title}</h2>

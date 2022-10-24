@@ -1,7 +1,7 @@
 import { OMDB_APIKEY } from '$env/static/private'
 
 export const actions = {
-    default: async ({request}) => {
+    search: async ({request}) => {
         const data = await request.formData()
         const searchTerms = data.get('searchTerms')
         
@@ -13,11 +13,18 @@ export const actions = {
         } catch (err) {
             console.error(err)
         }
-/*          return new Response(JSON.stringify({ movies: allMovies }), {
-            headers: {
-                'content-type': 'application/json; charset=utf-8'
-            }
-        }) */
+    },
+    details: async ({ request }) => {
+        const data = await request.formData()
+        const movieID = data.get('movieID')
+        try {
+            const omdb_response = await fetch(`https://www.omdbapi.com/?apikey=${OMDB_APIKEY}&i=${movieID}`)
+            const movieData = await omdb_response.json()
+            //console.log(movieData)
+            return movieData
+        } catch (err) {
+            console.error(err)
+        }
     }
 }
 
