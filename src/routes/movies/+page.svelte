@@ -17,11 +17,6 @@
 		}
 	}
 
-	const modalClose = (event) => {
-		if (modalVisible && event.key === 'Escape') {
-			
-		}
-	}
 </script>
 
 {#if errors?.title}
