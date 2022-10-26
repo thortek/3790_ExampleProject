@@ -1,11 +1,26 @@
 <script>
-	import { getMovieDetails} from '$lib/api/movieDetails'
-	export let data, form, errors;
-	$: console.log(data)
-	async function getDetails(movieID) {
-		console.log(movieID)
-		const selectedMovie = await getMovieDetails('posterMovieID', movieID)
-		console.log(selectedMovie)
+	import MovieModal from '../../lib/components/MovieModal/MovieModal.svelte'
+	import { enhance } from '$app/forms'
+	export let form, errors
+	
+	let showModal = false
+	let movieDetails = {}
+
+	function toggleModal() {
+		showModal = !showModal
+	}
+
+	const getMovieDetails = () => {
+		return async ({ result }) => {
+			movieDetails = await result.data
+			toggleModal()
+		}
+	}
+
+	const modalClose = (event) => {
+		if (modalVisible && event.key === 'Escape') {
+			
+		}
 	}
 </script>
 
@@ -25,16 +40,14 @@
 		{#each form as movie}
 			<div class="card w-96 bg-base-100 shadow-xl m-4">
 				<figure>
- 					<form
-					id="posterForm"
-						on:submit|preventDefault={getDetails(movie.imdbID)}
-					>
+ 					<form id="posterForm" method="POST" action="?/details" use:enhance={getMovieDetails}>
 						<input
 							type="image"
-							name="posterMovieID"
+							name="movieID"
+							value={movie.imdbID}
 							id="posterMovieID"
 							src={movie.Poster}
-							alt="Movie poster"
+							alt="Submit"
 						/>
 					</form>
 				</figure>
@@ -48,4 +61,7 @@
 			</div>
 		{/each}
 	{/if}
+
+		<MovieModal {movieDetails} {showModal} {toggleModal}/>
+	
 </main>

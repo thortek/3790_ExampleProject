@@ -20,7 +20,6 @@ export const actions = {
         try {
             const omdb_response = await fetch(`https://www.omdbapi.com/?apikey=${OMDB_APIKEY}&i=${movieID}`)
             const movieData = await omdb_response.json()
-            //console.log(movieData)
             return movieData
         } catch (err) {
             console.error(err)
