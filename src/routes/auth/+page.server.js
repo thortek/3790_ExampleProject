@@ -13,7 +13,12 @@ export const actions = {
             return invalid(400, {email, missing: true})
         }
         
-		throw redirect(303, '/dashboard');
+		throw redirect(307, '/dashboard');
 		
+    },
+    signup: async ({ request }) => {
+        const data = await request.formData()
+        // connect to online identity manager eventually
+        throw redirect(307, '/auth/login');
     }
 }
