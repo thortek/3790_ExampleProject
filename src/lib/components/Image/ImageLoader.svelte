@@ -4,15 +4,8 @@
   
     import IntersectionObserver from './IntersectionObserver.svelte'
     import Image from './Image.svelte'
-    import { onMount } from 'svelte'
     
     let nativeLoading = false
-
-    onMount(() => {
-        if ('loading' in HTMLImageElement.prototype) {
-            nativeLoading = true
-        }
-    })
     
   </script>
   

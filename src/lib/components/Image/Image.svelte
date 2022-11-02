@@ -11,7 +11,7 @@
       thisImage.onload = () => {
         loaded = true
       }
-    }) 
+    })
   
   </script>
   
@@ -26,4 +26,4 @@
     }
   </style>
   
-  <img {src} {alt} class:loaded bind:this={thisImage} loading="lazy" />
+  <img {src} {alt} class:loaded bind:this={thisImage} loading="lazy" onerror="onerror = null; this.src='favicon.png';" />
