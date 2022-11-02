@@ -3,7 +3,7 @@
 	import { theme } from '$lib/stores/theme'
 </script>
 
-<div data-theme={$theme} flex-1>
+<div data-theme={$theme}>
 
 <slot />
 
