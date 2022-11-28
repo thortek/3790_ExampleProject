@@ -2,7 +2,7 @@
   import { goto } from '$app/navigation'
 
   function navigate() {
-    goto('/dashboard')
+    goto('/auth/login')
   }
 </script>
 

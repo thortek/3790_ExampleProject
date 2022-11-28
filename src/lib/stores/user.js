@@ -2,9 +2,9 @@ import { writable } from "svelte/store"
 import { browser } from '$app/environment'
 
 const defaultValue = {
-    firstName: '',
-    lastName: '',
-    email: ''
+    firstName: 'default',
+    lastName: 'user',
+    email: 'user@foo.com'
 }
 
 const initialValue = browser ? window.localStorage.getItem('user') : defaultValue

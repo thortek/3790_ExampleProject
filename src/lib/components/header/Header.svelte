@@ -1,7 +1,8 @@
 <script>
+  import { user } from '$lib/stores/user'
 	import { enhance } from '$app/forms'
 	import { theme } from '$lib/stores/theme'
-	import { user } from '$lib/stores/user'
+	
 
 	let themeOptions = ['light', 'dark', 'cupcake', 'aqua', 'dracula', 'winter']
 
