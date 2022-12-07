@@ -26,6 +26,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"aws-amplify": "^5.0.5",
 		"chart.js": "^3.9.1",
 		"daisyui": "^2.24.0",
 		"sanitize-html": "^2.7.2",
